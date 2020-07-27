@@ -1,10 +1,11 @@
 <template>
   <ul>
-      <li v-for="{ id, title, artist, year } in records" :key="id">
+      <li v-for="{ id, title, artists, year, coverPath } in records" :key="id">
           <mrc-record
             :title="title"
-            :artist="artist"
+            :artists="artists"
             :year="year"
+            :cover-path="coverPath"
           ></mrc-record>
       </li>
   </ul>
