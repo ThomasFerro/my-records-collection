@@ -11,21 +11,21 @@ firebase.initializeApp(config);
 // Get a reference to the database service
 const database = firebase.database();
 
+const records = ref([]);
+
+const recordsRef = database.ref('/records');
+recordsRef.on('value', (snapshot) => {
+    if (snapshot.exists()) {
+        records.value = Object
+            .entries(snapshot.val())
+            .map(([ id, data ]) => ({
+                id,
+                ...data,
+            }));
+    }
+})
+
 export const recordsManagement = () => {
-    const records = ref([]);
-
-    const recordsRef = database.ref('/records');
-    recordsRef.on('value', (snapshot) => {
-        if (snapshot.exists()) {
-            records.value = Object
-                .entries(snapshot.val())
-                .map(([ id, data ]) => ({
-                    id,
-                    ...data,
-                }));
-        }
-    })
-
     return {
         records,
     }
