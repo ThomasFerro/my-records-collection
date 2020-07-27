@@ -1,4 +1,8 @@
 <template>
+  <label>
+    Search:
+    <input type="text" v-model="filter">
+  </label>
   <ul>
       <li v-for="{ id, title, artists, year, coverPath } in records" :key="id">
           <mrc-record
@@ -20,7 +24,8 @@ export default {
   setup() {
     const recordsData = recordsManagement();
     return {
-      records: recordsData.records,
+      records: recordsData.filteredRecords,
+      filter: recordsData.filter
     };
   },
   components: {

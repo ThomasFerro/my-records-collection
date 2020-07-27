@@ -1,4 +1,4 @@
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import firebase from 'firebase/app';
 import 'firebase/database';
 
@@ -25,8 +25,22 @@ recordsRef.on('value', (snapshot) => {
     }
 })
 
+const includesIgnoreCase = (first, second) => {
+    return first.toLowerCase().includes(second.toLowerCase());
+}
+
 export const recordsManagement = () => {
+    const filter = ref('');
+
+    const filteredRecords = computed(() => records.value.filter((record) => {
+        return includesIgnoreCase(record.title, filter.value)
+        || includesIgnoreCase(record.artists, filter.value)
+        || includesIgnoreCase(String(record.year), filter.value)
+    }));
+
     return {
         records,
+        filter,
+        filteredRecords,
     }
 };
