@@ -1,6 +1,6 @@
 <template>
-  <main>
-    <h1>My records collection</h1>
+  <main class="container is-fluid">
+    <h1 class="title is-1">My records collection</h1>
     <mrc-collection></mrc-collection>
   </main>
 </template>

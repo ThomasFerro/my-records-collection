@@ -3,8 +3,12 @@
     Search:
     <input type="text" v-model="filter">
   </label>
-  <ul>
-      <li v-for="{ id, title, artists, year, coverPath } in records" :key="id">
+  <ul class="columns is-multiline mt-1">
+      <li 
+        v-for="{ id, title, artists, year, coverPath } in records"
+        :key="id"
+        class="column is-half-tablet is-one-third-desktop is-one-quarter-fullhd"
+      >
           <mrc-record
             :title="title"
             :artists="artists"
