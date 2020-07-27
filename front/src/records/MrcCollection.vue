@@ -3,7 +3,7 @@
     Search:
     <input type="text" v-model="filter">
   </label>
-  <ul class="columns is-multiline mt-1">
+  <transition-group tag="ul" name="list" class="columns is-multiline mt-1">
       <li 
         v-for="{ id, title, artists, year, coverPath } in records"
         :key="id"
@@ -16,7 +16,7 @@
             :cover-path="coverPath"
           ></mrc-record>
       </li>
-  </ul>
+  </transition-group>
 </template>
 
 <script>
@@ -37,3 +37,15 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.list-enter-active,
+.list-leave-active {
+  transition: all 1s ease;
+}
+.list-enter-from,
+.list-leave-to {
+  opacity: 0;
+  transform: translateY(30px);
+}
+</style>
